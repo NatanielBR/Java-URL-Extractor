@@ -8,10 +8,8 @@ import javax.swing.event.ListDataListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.awt.event.ActionEvent;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,9 +25,13 @@ public class JanelaRaiz {
     private JPanel lista;
     private JPanel alteravel;
     private JTextArea Saida;
+    private JRadioButton textoPuroRadioButton;
+    private JRadioButton valorDoHrefRadioButton;
+    private ButtonGroup linkTipo;
 
     private Document document;
     private DefaultMutableTreeNode raiz = null;
+    private int TextoTipo = 1;
     private SwingWorker<Document, Document> urlcatch = null;
 
     public JanelaRaiz() {
@@ -37,6 +39,23 @@ public class JanelaRaiz {
         carregarButton.addActionListener((a) -> acaoURLEntrada());
         filtrar.addActionListener((a) -> acaoFiltrar());
         filtro.addActionListener((a) -> acaoFiltrar());
+        Enumeration<AbstractButton> aa = linkTipo.getElements();
+        for (int i =0; aa.hasMoreElements(); i++){
+            final int ii = i;
+            aa.nextElement().addActionListener((a) -> acaoRadioBotao(ii));
+        }
+    }
+    public JanelaRaiz(String debug) {
+        textField1.addActionListener((a) -> acaoURLEntrada());
+        textField1.setText(debug);
+        carregarButton.addActionListener((a) -> acaoURLEntrada());
+        filtrar.addActionListener((a) -> acaoFiltrar());
+        filtro.addActionListener((a) -> acaoFiltrar());
+        Enumeration<AbstractButton> aa = linkTipo.getElements();
+        for (int i =0; aa.hasMoreElements(); i++){
+            final int ii = i;
+            aa.nextElement().addActionListener((a) -> acaoRadioBotao(ii));
+        }
     }
 
     /**
@@ -48,6 +67,10 @@ public class JanelaRaiz {
             return;
         }
         ((Valor<String>) Tipo.getSelectedItem()).getAcao().accept(texto);
+    }
+
+    public void acaoRadioBotao(int seuIndex) {
+        TextoTipo = seuIndex;
     }
 
     /**
@@ -62,8 +85,33 @@ public class JanelaRaiz {
         }
     }
 
+    private String trabalharTexto(String texto, String raiz, int tipo) {
+        String retorno = null;
+        switch (tipo) {
+            case 0:
+                //caso seja "texto puro"
+                retorno = texto;
+                break;
+            case 1:
+                //caso seja "atributo href"
+                Pattern pattern = Pattern.compile("href=\\\"(.*?)\\\"");
+                Matcher matcher = pattern.matcher(texto);
+                if (!matcher.find()) break;
+                retorno = matcher.group(0);
+                retorno = retorno.replace("href=\"", "");
+                retorno = retorno.substring(0, retorno.length() - 1);
+                if (!retorno.contains("http")){
+                    retorno = raiz + retorno;
+                }
+
+                break;
+        }
+        return retorno;
+    }
+
     /**
-     *  Metodo para modificar a JTree usando elementos do documento
+     * Metodo para modificar a JTree usando elementos do documento
+     *
      * @param ele
      */
     private void modificarValores(Elements ele) {
@@ -96,6 +144,7 @@ public class JanelaRaiz {
 
     /**
      * Metodo para criar o modelo do comboBoxModel
+     *
      * @param data
      * @return
      */
@@ -138,11 +187,17 @@ public class JanelaRaiz {
 
     /**
      * Metodo main
+     *
      * @param args
      */
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Java URL Extrator - 1.0");
-        frame.setContentPane(new JanelaRaiz().janela);
+        JFrame frame = new JFrame("Java URL Extrator - 2.0");
+        if (args[0] == null){
+            frame.setContentPane(new JanelaRaiz().janela);
+        }else{
+            frame.setContentPane(new JanelaRaiz(args[0]).janela);
+        }
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 320);
         frame.setVisible(true);
@@ -150,35 +205,36 @@ public class JanelaRaiz {
 
     /**
      * Metodo para transformar o Array de String em Array de Valor's
+     *
      * @return
      */
-    private Valor<String>[] criarArrayDoTipo(){
+    private Valor<String>[] criarArrayDoTipo() {
         List<Valor<String>> lista = new ArrayList<>();
-        Consumer<JTextField> limpar = (a)-> a.setText("");
+        Consumer<JTextField> limpar = (a) -> a.setText("");
         lista.add(new Valor<>("Tag", (Consumer<String>) s -> {
             modificarValores(s.isEmpty() ? document.getAllElements() : document.getElementsByTag(s));
-        },limpar));
+        }, limpar));
         lista.add(new Valor<>("Atributo", (Consumer<String>) s -> {
             modificarValores(s.isEmpty() ? document.getAllElements() : document.getElementsByAttribute(s));
-        },limpar));
+        }, limpar));
         lista.add(new Valor<>("Atributo + Contains", (Consumer<String>) s -> {
-            if (!s.contains("=")){
+            if (!s.contains("=")) {
                 return;
             }
             String[] ss = s.split("=");
-            modificarValores(document.getElementsByAttributeValueContaining(ss[0],ss[1]));
-        },acaoLimpar("Use = para separar")));
+            modificarValores(document.getElementsByAttributeValueContaining(ss[0], ss[1]));
+        }, acaoLimpar("Use = para separar")));
         return lista.toArray(new Valor[0]);
     }
 
     /**
      * Metodo para limpar e colocar uma mensagem
-     * @param msg
-     * a mensagem
+     *
+     * @param msg a mensagem
      * @return
      */
-    private Consumer<JTextField> acaoLimpar(String msg){
-        return (a)->{
+    private Consumer<JTextField> acaoLimpar(String msg) {
+        return (a) -> {
             a.setText("");
             a.setToolTipText(msg);
         };
@@ -197,18 +253,10 @@ public class JanelaRaiz {
             if (path == null) return;
             String last = path.getLastPathComponent().toString();
             String root = path.getPathComponent(0).toString();
-            Pattern part = Pattern.compile("href=\\\"(.*?)\\\"");
-            Matcher matcher = part.matcher(last);
-            if (matcher.find()) {
-                String href = matcher.group(0);
-                href = href.replace("href=\"", "");
-                href = href.substring(0, href.length() - 1);
-                if (href.contains("http")) {
-                    Saida.append(href + System.lineSeparator());
-                } else {
-                    Saida.append(root + href + System.lineSeparator());
-                }
-            }
+            String retorno = trabalharTexto(last,root,TextoTipo);
+            if (retorno == null) return;
+            Saida.append(retorno + System.lineSeparator());
+
         });
     }
 }

@@ -7,14 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a26e840-690e-42fc-9aaf-b69b181b6bfb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/File_Network_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/File Network/JanelaRaiz$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File Network/JanelaRaiz$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File Network/JanelaRaiz$2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/File Network/JanelaRaiz.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File Network/JanelaRaiz.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File Network/Valor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File Network/Valor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JanelaRaiz.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/JanelaRaiz.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JanelaRaiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JanelaRaiz.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,11 +25,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/JanelaRaiz.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1045">
-              <caret line="142" column="44" selection-start-line="142" selection-start-column="44" selection-end-line="142" selection-end-column="44" />
+            <state relative-caret-position="182">
+              <caret line="193" column="58" selection-start-line="193" selection-start-column="58" selection-end-line="193" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2001#2002#0" expanded="true" />
+                <element signature="e#2031#2032#0" expanded="true" />
                 <element signature="method#criarModelo#0;class#JanelaRaiz#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Valor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="52" column="19" selection-start-line="9" selection-start-column="4" selection-end-line="66" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -62,6 +73,11 @@
     </option>
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -69,8 +85,9 @@
         <option value="$PROJECT_DIR$/src/fxml/JanelaRaiz.fxml" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Valor.java" />
-        <option value="$PROJECT_DIR$/src/JanelaRaiz.java" />
         <option value="$PROJECT_DIR$/src/JanelaRaiz.form" />
+        <option value="$PROJECT_DIR$/src/JBotaoRadio.java" />
+        <option value="$PROJECT_DIR$/src/JanelaRaiz.java" />
       </list>
     </option>
   </component>
@@ -89,7 +106,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -97,10 +113,16 @@
               <item name="Java-URL-Extractor" type="b2602c69:ProjectViewProjectNode" />
               <item name="Java-URL-Extractor" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Java-URL-Extractor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java-URL-Extractor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -126,7 +148,15 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.JanelaRaiz">
+  <component name="RunManager" selected="Application.JanelaRaiz debug">
+    <configuration name="JanelaRaiz debug" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="JanelaRaiz" />
+      <module name="File Network" />
+      <option name="PROGRAM_PARAMETERS" value="https://www.google.com" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JanelaRaiz" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="JanelaRaiz" />
       <module name="File Network" />
@@ -144,6 +174,7 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.JanelaRaiz" />
+      <item itemvalue="Application.JanelaRaiz debug" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -164,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554053489736</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit 1.0">
+      <created>1554053807166</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1554053807166</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -174,15 +212,15 @@
       <window_info id="UI Designer" order="0" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.49395162" visible="true" weight="0.2496474" />
-      <window_info id="Structure" order="4" sideWeight="0.5060484" side_tool="true" visible="true" weight="0.2496474" />
+      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.49295774" visible="true" weight="0.2496474" />
+      <window_info id="Structure" order="4" sideWeight="0.5070422" side_tool="true" visible="true" weight="0.2496474" />
       <window_info anchor="bottom" id="Terminal" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50070524" side_tool="true" visible="true" weight="0.32972974" />
-      <window_info anchor="bottom" id="Messages" order="2" weight="0.3293011" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="3" sideWeight="0.4992948" visible="true" weight="0.32972974" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5014104" side_tool="true" weight="0.32837838" />
+      <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.4992948" weight="0.32837838" />
+      <window_info anchor="bottom" id="Version Control" order="3" sideWeight="0.4992948" weight="0.32972974" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.32837838" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.4992948" visible="true" weight="0.32837838" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -208,31 +246,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Valor.java">
+    <entry file="file://$PROJECT_DIR$/src/JanelaRaiz.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/javax/swing/JRadioButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+        <state relative-caret-position="156">
+          <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JBotaoRadio.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1149#1150#0" expanded="true" />
-            <element signature="e#1177#1178#0" expanded="true" />
-            <element signature="e#1213#1214#0" expanded="true" />
-            <element signature="e#1240#1241#0" expanded="true" />
-            <element signature="e#1286#1287#0" expanded="true" />
-            <element signature="e#1314#1315#0" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JanelaRaiz.form">
-      <provider selected="true" editor-type-id="ui-designer" />
+    <entry file="file://$PROJECT_DIR$/src/Valor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="52" column="19" selection-start-line="9" selection-start-column="4" selection-end-line="66" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JanelaRaiz.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1045">
-          <caret line="142" column="44" selection-start-line="142" selection-start-column="44" selection-end-line="142" selection-end-column="44" />
+        <state relative-caret-position="182">
+          <caret line="193" column="58" selection-start-line="193" selection-start-column="58" selection-end-line="193" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2001#2002#0" expanded="true" />
+            <element signature="e#2031#2032#0" expanded="true" />
             <element signature="method#criarModelo#0;class#JanelaRaiz#0" />
           </folding>
         </state>
