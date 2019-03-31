@@ -141,7 +141,7 @@ public class JanelaRaiz {
      * @param args
      */
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Java Url Extract");
+        JFrame frame = new JFrame("Java URL Extrator - 1.0");
         frame.setContentPane(new JanelaRaiz().janela);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 320);
