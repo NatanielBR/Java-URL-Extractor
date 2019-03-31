@@ -20,7 +20,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="https://railan.tk/"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="6a962" class="javax.swing.JButton" binding="carregarButton" default-binding="true">
