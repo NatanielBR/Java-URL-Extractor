@@ -6,11 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a26e840-690e-42fc-9aaf-b69b181b6bfb" name="Default Changelist" comment="">
+    <list default="true" id="4a26e840-690e-42fc-9aaf-b69b181b6bfb" name="Default Changelist" comment="Commit 2.0&#10;&#10;Sistema de escolha de tipo de texto (Texto puro ou valor do href) feito">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File Network/JanelaRaiz$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File Network/JanelaRaiz$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File Network/JanelaRaiz.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File Network/JanelaRaiz.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JanelaRaiz.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/JanelaRaiz.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JanelaRaiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JanelaRaiz.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -25,12 +22,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/JanelaRaiz.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="193" column="58" selection-start-line="193" selection-start-column="58" selection-end-line="193" selection-end-column="58" />
+            <state relative-caret-position="131">
+              <caret line="75" column="41" selection-start-line="75" selection-start-column="41" selection-end-line="75" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2001#2002#0" expanded="true" />
-                <element signature="e#2031#2032#0" expanded="true" />
+                <element signature="e#1135#1136#0" expanded="true" />
+                <element signature="e#1159#1160#0" expanded="true" />
                 <element signature="method#criarModelo#0;class#JanelaRaiz#0" />
               </folding>
             </state>
@@ -40,7 +37,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Valor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
+            <state relative-caret-position="799">
               <caret line="52" column="19" selection-start-line="9" selection-start-column="4" selection-end-line="66" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -63,6 +60,12 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>try</find>
+      <find>return;</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -106,6 +109,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -122,7 +126,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -202,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554053807166</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Commit 2.0&#10;&#10;Sistema de escolha de tipo de texto (Texto puro ou valor do href) feito">
+      <created>1554070815841</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1554070815841</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -212,8 +222,8 @@
       <window_info id="UI Designer" order="0" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.49295774" visible="true" weight="0.2496474" />
-      <window_info id="Structure" order="4" sideWeight="0.5070422" side_tool="true" visible="true" weight="0.2496474" />
+      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.49094567" visible="true" weight="0.2496474" />
+      <window_info id="Structure" order="4" sideWeight="0.5090543" side_tool="true" visible="true" weight="0.2496474" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5014104" side_tool="true" weight="0.32837838" />
       <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.4992948" weight="0.32837838" />
@@ -235,7 +245,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit inicial" />
     <MESSAGE value="Commit 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 1.0" />
+    <MESSAGE value="Commit 2.0&#10;&#10;Sistema de escolha de tipo de texto (Texto puro ou valor do href) feito" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 2.0&#10;&#10;Sistema de escolha de tipo de texto (Texto puro ou valor do href) feito" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/fxml/JanelaRaiz.fxml" />
@@ -246,9 +257,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JanelaRaiz.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/javax/swing/JRadioButton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -256,21 +264,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JBotaoRadio.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JBotaoRadio.java" />
     <entry file="file://$PROJECT_DIR$/src/Valor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
+        <state relative-caret-position="799">
           <caret line="52" column="19" selection-start-line="9" selection-start-column="4" selection-end-line="66" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -278,14 +275,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/JanelaRaiz.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="308" column="13" selection-start-line="308" selection-start-column="13" selection-end-line="308" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/JanelaRaiz.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="193" column="58" selection-start-line="193" selection-start-column="58" selection-end-line="193" selection-end-column="58" />
+        <state relative-caret-position="131">
+          <caret line="75" column="41" selection-start-line="75" selection-start-column="41" selection-end-line="75" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2001#2002#0" expanded="true" />
-            <element signature="e#2031#2032#0" expanded="true" />
+            <element signature="e#1135#1136#0" expanded="true" />
+            <element signature="e#1159#1160#0" expanded="true" />
             <element signature="method#criarModelo#0;class#JanelaRaiz#0" />
           </folding>
         </state>

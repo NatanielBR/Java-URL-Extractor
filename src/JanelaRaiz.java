@@ -8,7 +8,7 @@ import javax.swing.event.ListDataListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
-import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
@@ -35,19 +35,11 @@ public class JanelaRaiz {
     private SwingWorker<Document, Document> urlcatch = null;
 
     public JanelaRaiz() {
-        textField1.addActionListener((a) -> acaoURLEntrada());
-        carregarButton.addActionListener((a) -> acaoURLEntrada());
-        filtrar.addActionListener((a) -> acaoFiltrar());
-        filtro.addActionListener((a) -> acaoFiltrar());
-        Enumeration<AbstractButton> aa = linkTipo.getElements();
-        for (int i =0; aa.hasMoreElements(); i++){
-            final int ii = i;
-            aa.nextElement().addActionListener((a) -> acaoRadioBotao(ii));
-        }
+        this("");
     }
     public JanelaRaiz(String debug) {
-        textField1.addActionListener((a) -> acaoURLEntrada());
         textField1.setText(debug);
+        textField1.addActionListener((a) -> acaoURLEntrada());
         carregarButton.addActionListener((a) -> acaoURLEntrada());
         filtrar.addActionListener((a) -> acaoFiltrar());
         filtro.addActionListener((a) -> acaoFiltrar());
@@ -59,14 +51,21 @@ public class JanelaRaiz {
     }
 
     /**
-     * Acao para o filtro, usado no botao de filtrar e na caixa de texto
+     * Metodo main
+     *
+     * @param args
      */
-    public void acaoFiltrar() {
-        String texto = filtro.getText();
-        if (Tipo.getSelectedItem() == null) {
-            return;
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Java URL Extrator - 2.0 build:2");
+        if (args[0] == null) {
+            frame.setContentPane(new JanelaRaiz().janela);
+        } else {
+            frame.setContentPane(new JanelaRaiz(args[0]).janela);
         }
-        ((Valor<String>) Tipo.getSelectedItem()).getAcao().accept(texto);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 320);
+        frame.setVisible(true);
     }
 
     public void acaoRadioBotao(int seuIndex) {
@@ -74,15 +73,12 @@ public class JanelaRaiz {
     }
 
     /**
-     * Açao para carregar a URL
+     * Acao para o filtro, usado no botao de filtrar e na caixa de texto
      */
-    public void acaoURLEntrada() {
-        try {
-            document = Jsoup.connect(textField1.getText()).get();
-            modificarValores(document.getAllElements());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(filtrar, e, "Exception", JOptionPane.ERROR_MESSAGE);
-        }
+    public void acaoFiltrar() {
+        String texto = filtro.getText();
+
+        ((Valor<String>) Tipo.getSelectedItem()).getAcao().accept(texto);
     }
 
     private String trabalharTexto(String texto, String raiz, int tipo) {
@@ -186,21 +182,18 @@ public class JanelaRaiz {
     }
 
     /**
-     * Metodo main
-     *
-     * @param args
+     * Açao para carregar a URL
      */
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Java URL Extrator - 2.0");
-        if (args[0] == null){
-            frame.setContentPane(new JanelaRaiz().janela);
-        }else{
-            frame.setContentPane(new JanelaRaiz(args[0]).janela);
+    public void acaoURLEntrada() {
+        try {
+            String url = textField1.getText();
+            if (!(url.startsWith("http://") || url.startsWith("https://"))) url = "http://" + url;
+            document = Jsoup.connect(url).get();
+            modificarValores(document.getAllElements());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(filtrar, e, "Exception", JOptionPane.ERROR_MESSAGE);
         }
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 320);
-        frame.setVisible(true);
     }
 
     /**
@@ -219,6 +212,7 @@ public class JanelaRaiz {
         }, limpar));
         lista.add(new Valor<>("Atributo + Contains", (Consumer<String>) s -> {
             if (!s.contains("=")) {
+                JOptionPane.showMessageDialog(filtrar, "Faltando simbolo de igual.", "Exception", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             String[] ss = s.split("=");
