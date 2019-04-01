@@ -52,7 +52,7 @@ public class JanelaRaiz {
      * @param args Argumentos externos
      */
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Java URL Extrator - 2.0 build:2");
+        JFrame frame = new JFrame("Java URL Extrator - 2.0.3");
         if (args[0] == null) {
             frame.setContentPane(new JanelaRaiz().janela);
         } else {
@@ -92,7 +92,9 @@ public class JanelaRaiz {
                 retorno = matcher.group(0);
                 retorno = retorno.replace("href=\"", "");
                 retorno = retorno.substring(0, retorno.length() - 1);
-                if (!retorno.contains("http")){
+                if (retorno.startsWith("//")) {
+                    retorno = "http:" + retorno;
+                } else if (!retorno.contains("http")) {
                     retorno = raiz + retorno;
                 }
 
@@ -198,9 +200,10 @@ public class JanelaRaiz {
     private Valor[] criarArrayDoTipo() {
         List<Valor<String>> lista = new ArrayList<>();
         Consumer<JTextField> limpar = (a) -> a.setText("");
-        lista.add(new Valor<>("Tag", this::accept, limpar));
-        lista.add(new Valor<>("Atributo", this::accept2, limpar));
-        lista.add(new Valor<>("Atributo + Contains", this::accept3, acaoLimpar("Use = para separar")));
+        lista.add(new Valor<>("Tag", this::tagAccept, limpar));
+        lista.add(new Valor<>("Classe", this::classeAccept, limpar));
+        lista.add(new Valor<>("Atributo", this::atributoAccept, limpar));
+        lista.add(new Valor<>("Atributo + Parte do Conteudo", this::AtributoContendoAccept, acaoLimpar("Use = para separar")));
         return lista.toArray(new Valor[0]);
     }
 
@@ -237,15 +240,19 @@ public class JanelaRaiz {
         });
     }
 
-    private void accept(String s) {
+    private void tagAccept(String s) {
         modificarValores(s.isEmpty() ? document.getAllElements() : document.getElementsByTag(s));
     }
 
-    private void accept2(String s) {
+    private void atributoAccept(String s) {
         modificarValores(s.isEmpty() ? document.getAllElements() : document.getElementsByAttribute(s));
     }
 
-    private void accept3(String s) {
+    private void classeAccept(String s) {
+        modificarValores(s.isEmpty() ? document.getAllElements() : document.getElementsByClass(s));
+    }
+
+    private void AtributoContendoAccept(String s) {
         if (!s.contains("=")) {
             JOptionPane.showMessageDialog(filtrar, "Faltando simbolo de igual.", "Exception", JOptionPane.ERROR_MESSAGE);
             return;
