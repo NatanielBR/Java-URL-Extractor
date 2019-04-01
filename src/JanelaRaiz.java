@@ -52,8 +52,8 @@ public class JanelaRaiz {
      * @param args Argumentos externos
      */
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Java URL Extrator - 2.0.3");
-        if (args[0] == null) {
+        JFrame frame = new JFrame("Java URL Extrator - 2.0.5");
+        if (args.length == 0) {
             frame.setContentPane(new JanelaRaiz().janela);
         } else {
             frame.setContentPane(new JanelaRaiz(args[0]).janela);
@@ -77,9 +77,9 @@ public class JanelaRaiz {
         ((Valor<String>) Tipo.getSelectedItem()).getAcao().accept(texto);
     }
 
-    private String trabalharTexto(String texto, String raiz, int tipo) {
-        String retorno = null;
-        switch (tipo) {
+    private String trabalharTexto(String texto, String raiz) {
+        String retorno = "";
+        switch (TextoTipo) {
             case 0:
                 //caso seja "texto puro"
                 retorno = texto;
@@ -99,6 +99,9 @@ public class JanelaRaiz {
                 }
 
                 break;
+        }
+        if (!retorno.isEmpty()) {
+            retorno = retorno + System.lineSeparator();
         }
         return retorno;
     }
@@ -233,9 +236,8 @@ public class JanelaRaiz {
             if (path == null) return;
             String last = path.getLastPathComponent().toString();
             String root = path.getPathComponent(0).toString();
-            String retorno = trabalharTexto(last,root,TextoTipo);
-            if (retorno == null) return;
-            Saida.append(retorno + System.lineSeparator());
+            String retorno = trabalharTexto(last, root);
+            Saida.append(retorno);
 
         });
     }
