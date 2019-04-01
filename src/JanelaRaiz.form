@@ -33,7 +33,7 @@
           </component>
         </children>
       </grid>
-      <grid id="58c9d" binding="alteravel" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="58c9d" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="Center"/>
         <properties>
           <enabled value="true"/>
@@ -114,14 +114,14 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="d3821" class="javax.swing.JRadioButton" binding="textoPuroRadioButton" default-binding="true">
+                      <component id="d3821" class="javax.swing.JRadioButton" default-binding="true">
                         <constraints/>
                         <properties>
                           <selected value="false"/>
                           <text value="Texto puro"/>
                         </properties>
                       </component>
-                      <component id="f48a0" class="javax.swing.JRadioButton" binding="valorDoHrefRadioButton" default-binding="true">
+                      <component id="f48a0" class="javax.swing.JRadioButton" default-binding="true">
                         <constraints/>
                         <properties>
                           <selected value="true"/>
@@ -134,7 +134,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="a74cf" binding="lista" layout-manager="BorderLayout" hgap="0" vgap="0">
+          <grid id="a74cf" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints border-constraint="Center"/>
             <properties/>
             <border type="none"/>

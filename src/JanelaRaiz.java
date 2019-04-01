@@ -22,22 +22,18 @@ public class JanelaRaiz {
     private JTextField filtro;
     private JButton filtrar;
     private JTree Valores;
-    private JPanel lista;
-    private JPanel alteravel;
     private JTextArea Saida;
-    private JRadioButton textoPuroRadioButton;
-    private JRadioButton valorDoHrefRadioButton;
     private ButtonGroup linkTipo;
 
     private Document document;
     private DefaultMutableTreeNode raiz = null;
     private int TextoTipo = 1;
-    private SwingWorker<Document, Document> urlcatch = null;
 
-    public JanelaRaiz() {
+    private JanelaRaiz() {
         this("");
     }
-    public JanelaRaiz(String debug) {
+
+    private JanelaRaiz(String debug) {
         textField1.setText(debug);
         textField1.addActionListener((a) -> acaoURLEntrada());
         carregarButton.addActionListener((a) -> acaoURLEntrada());
@@ -53,7 +49,7 @@ public class JanelaRaiz {
     /**
      * Metodo main
      *
-     * @param args
+     * @param args Argumentos externos
      */
     public static void main(String[] args) {
         JFrame frame = new JFrame("Java URL Extrator - 2.0 build:2");
@@ -68,14 +64,14 @@ public class JanelaRaiz {
         frame.setVisible(true);
     }
 
-    public void acaoRadioBotao(int seuIndex) {
+    private void acaoRadioBotao(int seuIndex) {
         TextoTipo = seuIndex;
     }
 
     /**
      * Acao para o filtro, usado no botao de filtrar e na caixa de texto
      */
-    public void acaoFiltrar() {
+    private void acaoFiltrar() {
         String texto = filtro.getText();
 
         ((Valor<String>) Tipo.getSelectedItem()).getAcao().accept(texto);
@@ -90,7 +86,7 @@ public class JanelaRaiz {
                 break;
             case 1:
                 //caso seja "atributo href"
-                Pattern pattern = Pattern.compile("href=\\\"(.*?)\\\"");
+                Pattern pattern = Pattern.compile("href=\"(.*?)\"");
                 Matcher matcher = pattern.matcher(texto);
                 if (!matcher.find()) break;
                 retorno = matcher.group(0);
@@ -108,7 +104,7 @@ public class JanelaRaiz {
     /**
      * Metodo para modificar a JTree usando elementos do documento
      *
-     * @param ele
+     * @param ele Elementos para ser inseridos no JTree
      */
     private void modificarValores(Elements ele) {
         Map<String, List<Element>> listMap = new HashMap<>();
@@ -130,9 +126,7 @@ public class JanelaRaiz {
 
         listMap.forEach((a, b) -> {
             DefaultMutableTreeNode treeNode = new DefaultMutableTreeNode(a);
-            b.forEach((c) -> {
-                treeNode.add(new DefaultMutableTreeNode(c.toString()));
-            });
+            b.forEach((c) -> treeNode.add(new DefaultMutableTreeNode(c.toString())));
             raiz.add(treeNode);
         });
         Valores.setModel(new DefaultTreeModel(raiz));
@@ -141,8 +135,8 @@ public class JanelaRaiz {
     /**
      * Metodo para criar o modelo do comboBoxModel
      *
-     * @param data
-     * @return
+     * @param data Valores ja feito onde sera construido um modelo baseado nele
+     * @return retorna o modelo para o combobox
      */
     private ComboBoxModel<Valor<String>> criarModelo(Valor<String>[] data) {
         return new ComboBoxModel<Valor<String>>() {
@@ -184,7 +178,7 @@ public class JanelaRaiz {
     /**
      * Açao para carregar a URL
      */
-    public void acaoURLEntrada() {
+    private void acaoURLEntrada() {
         try {
             String url = textField1.getText();
             if (!(url.startsWith("http://") || url.startsWith("https://"))) url = "http://" + url;
@@ -199,25 +193,14 @@ public class JanelaRaiz {
     /**
      * Metodo para transformar o Array de String em Array de Valor's
      *
-     * @return
+     * @return retorna os valores constuido baseado no array Tipos, isso é feito na mao kk
      */
-    private Valor<String>[] criarArrayDoTipo() {
+    private Valor[] criarArrayDoTipo() {
         List<Valor<String>> lista = new ArrayList<>();
         Consumer<JTextField> limpar = (a) -> a.setText("");
-        lista.add(new Valor<>("Tag", (Consumer<String>) s -> {
-            modificarValores(s.isEmpty() ? document.getAllElements() : document.getElementsByTag(s));
-        }, limpar));
-        lista.add(new Valor<>("Atributo", (Consumer<String>) s -> {
-            modificarValores(s.isEmpty() ? document.getAllElements() : document.getElementsByAttribute(s));
-        }, limpar));
-        lista.add(new Valor<>("Atributo + Contains", (Consumer<String>) s -> {
-            if (!s.contains("=")) {
-                JOptionPane.showMessageDialog(filtrar, "Faltando simbolo de igual.", "Exception", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            String[] ss = s.split("=");
-            modificarValores(document.getElementsByAttributeValueContaining(ss[0], ss[1]));
-        }, acaoLimpar("Use = para separar")));
+        lista.add(new Valor<>("Tag", this::accept, limpar));
+        lista.add(new Valor<>("Atributo", this::accept2, limpar));
+        lista.add(new Valor<>("Atributo + Contains", this::accept3, acaoLimpar("Use = para separar")));
         return lista.toArray(new Valor[0]);
     }
 
@@ -225,7 +208,7 @@ public class JanelaRaiz {
      * Metodo para limpar e colocar uma mensagem
      *
      * @param msg a mensagem
-     * @return
+     * @return a açao criada
      */
     private Consumer<JTextField> acaoLimpar(String msg) {
         return (a) -> {
@@ -238,7 +221,7 @@ public class JanelaRaiz {
      * Metodo para modificar os componentes
      */
     private void createUIComponents() {
-        Tipo = new JComboBox();
+        Tipo = new JComboBox<>();
         Tipo.setModel(criarModelo(criarArrayDoTipo()));
         Valores = new JTree();
         Valores.setModel(null);
@@ -252,5 +235,22 @@ public class JanelaRaiz {
             Saida.append(retorno + System.lineSeparator());
 
         });
+    }
+
+    private void accept(String s) {
+        modificarValores(s.isEmpty() ? document.getAllElements() : document.getElementsByTag(s));
+    }
+
+    private void accept2(String s) {
+        modificarValores(s.isEmpty() ? document.getAllElements() : document.getElementsByAttribute(s));
+    }
+
+    private void accept3(String s) {
+        if (!s.contains("=")) {
+            JOptionPane.showMessageDialog(filtrar, "Faltando simbolo de igual.", "Exception", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String[] ss = s.split("=");
+        modificarValores(document.getElementsByAttributeValueContaining(ss[0], ss[1]));
     }
 }
